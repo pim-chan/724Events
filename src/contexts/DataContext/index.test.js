@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { DataProvider, api, useData } from "./index";
+import { DataProvider, resApi, useData } from "./index";
 
 describe("When a data context is created", () => {
   it("a call is executed on the events.json file", async () => {
-    api.loadData = jest.fn().mockReturnValue({ result: "ok" });
+    resApi.loadData = jest.fn().mockReturnValue({ result: "ok" });
     const Component = () => {
       const { data } = useData();
       return <div>{data?.result}</div>;
@@ -19,7 +19,7 @@ describe("When a data context is created", () => {
   describe("and the events call failed", () => {
     it("the error is dispatched", async () => {
       window.console.error = jest.fn();
-      api.loadData = jest.fn().mockRejectedValue("error on calling events");
+      resApi.loadData = jest.fn().mockRejectedValue("error on calling events");
 
       const Component = () => {
         const { error } = useData();

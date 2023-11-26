@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Form from "./index";
 
 describe("When Events is created", () => {
@@ -14,15 +14,12 @@ describe("When Events is created", () => {
     it("the success action is called", async () => {
       const onSuccess = jest.fn();
       render(<Form onSuccess={onSuccess} />);
-      fireEvent(
-        await screen.findByTestId("button-test-id"),
-        new MouseEvent("click", {
-          cancelable: true,
-          bubbles: true,
-        })
-      );
-      await screen.findByText("En cours");
-      await screen.findByText("Envoyer");
+      const submitButton = await screen.findByRole('button', { name: /Envoyer/i });
+      
+      fireEvent.click(submitButton);
+
+      await waitFor(() => screen.getByText("En cours"));
+      await waitFor(() => screen.getByText("Envoyer"));
       expect(onSuccess).toHaveBeenCalled();
     });
   });

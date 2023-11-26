@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Slider from "./index";
-import { api, DataProvider } from "../../contexts/DataContext";
+import { DataProvider, resApi } from "../../contexts/DataContext";
 
 const data = {
   focus: [
@@ -29,7 +29,7 @@ const data = {
 describe("When slider is created", () => {
   it("a list card is displayed", async () => {
     window.console.error = jest.fn();
-    api.loadData = jest.fn().mockReturnValue(data);
+    resApi.loadData = jest.fn().mockReturnValue(data);
     render(
       <DataProvider>
         <Slider />
