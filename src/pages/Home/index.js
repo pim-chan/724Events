@@ -13,13 +13,13 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {data} = useData()
+  const { data } = useData() // Extraction des données 
 
   let last;
 
   if(data && data.events){
     last = data.events[data.events.length - 1];
-  }
+  } // Si données récupérées, extraire dernier élément du tableau data.events
 
   return <>
     <header>

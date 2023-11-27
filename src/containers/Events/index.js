@@ -15,12 +15,16 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredEvents = (
+    // Si une catégorie sélectionnée est passé dans type (à l'aide de setType) elle sera comparée avec les catégories (type) des cartes évènements. 
     (!type
       ? data?.events
       : data?.events) || []
   ).filter((event) => {
-    if((type === null) || (type === undefined)){return true;}
-    return event.type === type;
+    if((type === null) || (type === undefined)) // Si aucune catégorie n'est sélectionné ou qu'elle n'est pas défini, toutes les cartes s'affichent
+    {
+      return true;
+    }
+    return event.type === type; // Sinon, afficher les cartes qui ne correspondent qu'à la catégorie sélectionnée 
   }).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
@@ -30,7 +34,6 @@ const EventList = () => {
     }
     return false;
   });
-
 
   const changeType = (evtType) => {
     setCurrentPage(1);

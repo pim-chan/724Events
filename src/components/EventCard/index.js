@@ -20,8 +20,8 @@ const EventCard = ({
         <div className="EventCard__label">{label}</div>
       </div>
       <div className="EventCard__descriptionContainer">
-        <div className="EventCard__title">{title}</div>
-        <div className="EventCard__month">{date.toLocaleString('fr-FR', {month: 'long'})}</div>
+        <div className="EventCard__title">{title}</div> 
+        <div className="EventCard__month">{date.toLocaleString('fr-FR', {month: 'long'})}</div> 
       </div>
     </div>
   );
@@ -35,7 +35,7 @@ EventCard.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-EventCard.defaultProps = {
+EventCard.defaultProps = { //
   imageSrc: "", 
   title: "title",
   imageAlt: "image",
