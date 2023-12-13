@@ -18,7 +18,10 @@ const Page = () => {
   let last;
 
   if(data && data.events){
-    last = data.events[data.events.length - 1];
+    const sortEvts = data.events.sort((evtA, evtB) => 
+    new Date (evtA.date) - new Date(evtB.date)
+    );
+    last = sortEvts[sortEvts.length - 1];
   } // Si données récupérées, extraire dernier élément du tableau data.events
 
   return <>

@@ -15,7 +15,7 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredEvents = (
-    // Si une catégorie sélectionnée est passé dans type (à l'aide de setType) elle sera comparée avec les catégories (type) des cartes évènements. 
+    // Si une catégorie sélectionnée est passé dans type (à l'aide de setType) elle sera comparée avec les catégories (type) des cartes évènements.  
     (!type
       ? data?.events
       : data?.events) || []
@@ -35,6 +35,7 @@ const EventList = () => {
     return false;
   });
 
+  // Mise à jour du state type (catégorie)
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
