@@ -6,49 +6,26 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? 1 : -1
   );
 
   const handleRadioChange = (radioIndex) => {
-    setIndex(radioIndex); // Mise à jour de l'index = changement slide affiché 
-    setIsPaused(true); // Mettre en pause le défilement du slider au clic 
-    setTimeout(() => {
-      setIsPaused(false); 
-    }, 2000); // La mise en pause du défilement est stoppé après 2 secondes
+    setIndex(radioIndex);
   };
-  
-  // Si le défilement du slider n'est pas en pause, passez au slide suivant
+
   const nextCard = () => {
-    if (!isPaused) {
+    if (byDateDesc) {
       setIndex((currentIndex) =>
-      currentIndex < byDateDesc.length - 1 ? currentIndex + 1 : 0
-      ); // Si le dernier slide est affiché, repasser au premier
-    }
-  };
-  
-  useEffect(() => {
-    const intervalSlide = setInterval(nextCard, 5000); // Passes au slide suivant toutes les 5 secondes
-    
-    return () => clearInterval(intervalSlide); 
-  }, [byDateDesc, isPaused]); // Lorsque les dépendances spécifiées changent, l'interval de 5 secondes se réinitialise
-
-  
-  // Mettre le slider en pause en appuyant sur la touche espace 
-  const handleKeyPress = (event) => {
-    if (event.key === " ") {
-      // Appuyer sur la touche espace
-      setIsPaused((prevIsPaused) => !prevIsPaused); // Inverser l'état de pause
+        currentIndex < byDateDesc.length - 1 ? currentIndex + 1 : 0
+      );
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
+    const intervalSlide = setInterval(nextCard, 5000);
+    return () => clearInterval(intervalSlide);
+  });
 
   return (
     <div className="SlideCardList">

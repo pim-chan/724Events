@@ -13,7 +13,7 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData() // Extraction des données 
+  const { data } = useData() 
 
   let last;
 
@@ -22,7 +22,7 @@ const Page = () => {
     new Date (evtA.date) - new Date(evtB.date)
     );
     last = sortEvts[sortEvts.length - 1];
-  } // Si données récupérées, extraire dernier élément du tableau data.events
+  } 
 
   return <>
     <header>
