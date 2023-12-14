@@ -39,6 +39,7 @@ EventCard.defaultProps = { //
   imageSrc: "", 
   title: "title",
   imageAlt: "image",
+  label: "category",
   small: false,
 }
 
