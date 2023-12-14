@@ -19,7 +19,7 @@ const EventList = () => {
       ? data?.events
       : data?.events) || []
   ).filter((event) => {
-    if((type === null) || (type === undmodificefined)) // 
+    if((type === null) || (type === undefined)) // 
     {
       return true;
     }
